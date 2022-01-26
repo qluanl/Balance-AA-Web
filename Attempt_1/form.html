@@ -1,121 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* 清除浮动 */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
- 
-/* 响应式布局 layout - 在屏幕宽度小于 600px 时， 设置为上下堆叠元素 */
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
-</style>
-</head>
-<body>
-
-<h2>响应式表单</h2>
-<p>响应式表带可以根据浏览器窗口的大小重新布局各个元素，我们可以通过重置浏览器窗口大小来查看效果：</p>
-
-<div class="container">
-  <form action="/action_page.php">
-  <div class="row">
-    <div class="col-25">
-      <label for="fname">First Name</label>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/form-making/dist/FormMaking.css">
+  </head>
+  <body>
+    <div id="app">
+      <fm-generate-form :data="jsonData" :remote="remoteFuncs" :value="editData" ref="generateForm">
+        
+      </fm-generate-form>
+      <el-button type="primary" @click="handleSubmit">提交</el-button>
     </div>
-    <div class="col-75">
-      <input type="text" id="fname" name="firstname" placeholder="Your name..">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="lname">Last Name</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="country">Country</label>
-    </div>
-    <div class="col-75">
-      <select id="country" name="country">
-        <option value="australia">Australia</option>
-        <option value="canada">Canada</option>
-        <option value="usa">USA</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="subject">Subject</label>
-    </div>
-    <div class="col-75">
-      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-    </div>
-  </div>
-  <div class="row">
-    <input type="submit" value="Submit">
-  </div>
-  </form>
-</div>
-
-</body>
-</html>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/form-making/dist/FormMaking.umd.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          jsonData: {"list":[{"type":"input","name":"Name","icon":"icon-input","options":{"width":"100%","defaultValue":"","required":true,"dataType":"string","pattern":"","placeholder":"Enter the name of the payment","disabled":false,"remoteFunc":"func_1643075655000_33076"},"key":"1643075655000_33076","model":"input_1643075655000_33076","rules":[{"type":"string","message":"Name格式不正确"},{"required":true,"message":"Name必须填写"}]},{"type":"date","name":"Date","icon":"icon-date","options":{"defaultValue":"","readonly":false,"disabled":false,"editable":true,"clearable":false,"placeholder":"Choose the date of the payment","startPlaceholder":"","endPlaceholder":"","type":"date","format":"yyyy-MM-dd","timestamp":false,"required":true,"width":"","remoteFunc":"func_1643075667000_91904"},"key":"1643075667000_91904","model":"date_1643075667000_91904","rules":[{"required":true,"message":"Date必须填写"}]},{"type":"select","name":"Currency","icon":"icon-select","options":{"defaultValue":"USD","multiple":false,"disabled":false,"clearable":false,"placeholder":"","required":true,"showLabel":true,"width":"Choose the currency of the payment","options":[{"value":"USD","label":"US Dollar"},{"value":"CNY","label":"RMB"},{"value":"EUR","label":"EEE"}],"remote":false,"filterable":false,"remoteOptions":[],"props":{"value":"value","label":"label"},"remoteFunc":"func_1643076070000_24458"},"key":"1643076070000_24458","model":"select_1643076070000_24458","rules":[{"required":true,"message":"Currency必须填写"}]},{"type":"checkbox","name":"Members","icon":"icon-check-box","options":{"inline":false,"defaultValue":["Shenggao Li","Bozhao Nan","Danchen Zhao"],"showLabel":false,"options":[{"value":"Shenggao Li"},{"value":"Bozhao Nan"},{"value":"Danchen Zhao"}],"required":true,"width":"","remote":false,"remoteOptions":[],"props":{"value":"value","label":"label"},"remoteFunc":"func_1643076178000_26330","disabled":false},"key":"1643076178000_26330","model":"checkbox_1643076178000_26330","rules":[{"required":true,"message":"Members必须填写"}]},{"type":"input","name":"Total","icon":"icon-input","options":{"width":"100%","defaultValue":"","required":true,"dataType":"number","pattern":"","placeholder":"","disabled":false,"remoteFunc":"func_1643076326000_26379"},"key":"1643076326000_26379","model":"input_1643076326000_26379","rules":[{"type":"number","message":"Total格式不正确"},{"required":true,"message":"Total必须填写"}]},{"type":"imgupload","name":"图片","icon":"icon-tupian","options":{"defaultValue":[],"size":{"width":120,"height":160},"width":"","tokenFunc":"funcGetToken","token":"","domain":"http://pfp81ptt6.bkt.clouddn.com/","disabled":false,"length":8,"multiple":false,"isQiniu":false,"isDelete":false,"min":1,"isEdit":false,"action":"https://jsonplaceholder.typicode.com/photos/","remoteFunc":"func_1643076483000_58572"},"key":"1643076483000_58572","model":"imgupload_1643076483000_58572","rules":[]}],"config":{"labelWidth":100,"labelPosition":"top","size":"small"}},
+          editData: {},
+          remoteFuncs: {
+            
+            funcGetToken (resolve) {
+              // 图片 imgupload_1643076483000_58572
+              // 获取到token数据后执行回调函数
+              // resolve(token)
+            },
+    
+          }
+        },
+        methods: {
+          handleSubmit () {
+            this.$refs.generateForm.getData().then(data => {
+              // 数据校验成功
+              // data 为获取的表单数据
+            }).catch(e => {
+              // 数据校验失败
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+  </html>

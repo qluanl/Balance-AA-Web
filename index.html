@@ -30,26 +30,32 @@
 				This is a balance AA project.
 			</p> 
 			<button type="button" class="btn btn-block btn-info">
-				Button
+				Get balance
 			</button> 
 			<button type="button" class="btn btn-block btn-danger">
-				Button
+				Send email
 			</button>
+            <label>
+                <small>Send the email with the current balance and the optimal transfer solution to everyone.</small>
+            </label>
 			<form role="form">
 				<div class="form-group">
 					 
-					<label for="exampleInputEmail1">
-						Email address
+					<label for="EventName">
+						Event Name
 					</label>
-					<input type="email" class="form-control" id="exampleInputEmail1">
+					<input type="text" class="form-control" id="EventName">
 				</div>
-				<div class="form-group">
+                
+                <div class="form-group">
 					 
-					<label for="exampleInputPassword1">
-						Password
+					<label for="DateOfEvent">
+						Date
 					</label>
-					<input type="password" class="form-control" id="exampleInputPassword1">
+					<input type="date" class="form-control" id="DateOfEvent">
 				</div>
+                
+                
 				<div class="form-group">
 					 
 					<label for="exampleInputFile">
@@ -70,55 +76,151 @@
 					Submit
 				</button>
 			</form>
+            
+
+<form>
+  <div class="form-group">
+    <label for="EventName">Event Name</label> 
+    <input id="EventName" name="EventName" placeholder="Name" type="text" class="form-control" required="required">
+  </div>
+  <div class="form-group">
+    <label for="Currency">Currency</label> 
+    <div>
+      <select id="Currency" name="Currency" class="custom-select" aria-describedby="CurrencyHelpBlock" required="required">
+        <option value="USD">US Dollar</option>
+        <option value="CNY">Chinese Yuan (RMB)</option>
+        <option value="EUR">EEE</option>
+      </select> 
+      <span id="CurrencyHelpBlock" class="form-text text-muted">Notice: Any other currency would be automatically converted into US dollar based on the current ratio while submitting to the google form.</span>
+    </div>
+  </div>
+  <label class="custom-control custom-checkbox">
+  <input type="checkbox" checked="checked" class="custom-control-input">
+  <span class="custom-control-indicator"></span>
+  <span class="custom-control-description">Check this custom checkbox</span>
+</label>
+  <div class="form-group">
+    <label>Members</label> 
+    <div>
+      <div class="custom-controls-stacked">
+        <div class="custom-control custom-checkbox">
+          <input name="Members" id="Members_0" type="checkbox" checked="checked" required="required" class="custom-control-input" value="Shenggao Li"> 
+          <span class="custom-control-indicator"></span>
+          <label for="Members_0" class="custom-control-label">Shenggao Li</label>
+        </div>
+      </div>
+      <div class="custom-controls-stacked">
+        <div class="custom-control custom-checkbox">
+          <input name="Members" id="Members_1" type="checkbox" checked="checked" required="required" class="custom-control-input" value="Bozhao Nan"> 
+          <span class="custom-control-indicator"></span>
+          <label for="Members_1" class="custom-control-label">Bozhao Nan</label>
+        </div>
+      </div>
+      <div class="custom-controls-stacked">
+        <div class="custom-control custom-checkbox">
+          <input name="Members" id="Members_2" type="checkbox" checked="checked" required="required" class="custom-control-input" value="Danchen Zhao"> 
+          <span class="custom-control-indicator"></span>
+          <label for="Members_2" class="custom-control-label">Danchen Zhao</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Payer</label> 
+    <div>
+      <div class="custom-controls-stacked">
+        <div class="custom-control custom-radio">
+          <input name="Payer" id="Payer_0" type="radio" required="required" class="custom-control-input" value="Shenggao Li"> 
+          <span class="custom-control-indicator"></span>
+          <label for="Payer_0" class="custom-control-label">Shenggao Li</label>
+        </div>
+      </div>
+      <div class="custom-controls-stacked">
+        <div class="custom-control custom-radio">
+          <input name="Payer" id="Payer_1" type="radio" required="required" class="custom-control-input" value="Bozhao Nan"> 
+          <span class="custom-control-indicator"></span>
+          <label for="Payer_1" class="custom-control-label">Bozhao Nan</label>
+        </div>
+      </div>
+      <div class="custom-controls-stacked">
+        <div class="custom-control custom-radio">
+          <input name="Payer" id="Payer_2" type="radio" required="required" class="custom-control-input" value="Danchen Zhao"> 
+          <span class="custom-control-indicator"></span>
+          <label for="Payer_2" class="custom-control-label">Danchen Zhao</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Subtotal">Subtotal (non taxed)</label> 
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-usd"></i>
+        </div>
+      </div> 
+      <input id="Subtotal" name="Subtotal" placeholder="0.00" type="text" required="required" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Tax">Tax</label> 
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-usd"></i>
+        </div>
+      </div> 
+      <input id="Tax" name="Tax" placeholder="0.00" type="text" class="form-control" required="required">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Tips">Tips / Service fee</label> 
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-usd"></i>
+        </div>
+      </div> 
+      <input id="Tips" name="Tips" placeholder="0.00" type="text" class="form-control" required="required">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Logger">Logger</label> 
+    <input id="Logger" name="Logger" placeholder="Logger name" type="text" class="form-control" required="required">
+  </div>
+  <div class="form-group">
+    <label for="select">Select</label> 
+    <div>
+      <select id="select" name="select" class="custom-select">
+        <option value="rabbit">Rabbit</option>
+        <option value="duck">Duck</option>
+        <option value="fish">Fish</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Radio Buttons</label> 
+    <div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="radio" id="radio_0" type="radio" class="custom-control-input" value="rabbit"> 
+        <label for="radio_0" class="custom-control-label">Rabbit</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="radio" id="radio_1" type="radio" class="custom-control-input" value="duck"> 
+        <label for="radio_1" class="custom-control-label">Duck</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="radio" id="radio_2" type="radio" class="custom-control-input" value="fish"> 
+        <label for="radio_2" class="custom-control-label">Fish</label>
+      </div>
+    </div>
+  </div> 
+  <div class="form-group">
+    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
 		</div>
 		<div class="col-md-3">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-		</div>
-		<div class="col-md-4">
-            
-			<button type="button" class="btn btn-block btn-info">
-				Button
-			</button> 
-			<form role="form">
-				<div class="form-group">
-					 
-					<label for="exampleInputEmail1">
-						Email address
-					</label>
-					<input type="email" class="form-control" id="exampleInputEmail1">
-				</div>
-				<div class="form-group">
-					 
-					<label for="exampleInputPassword1">
-						Password
-					</label>
-					<input type="password" class="form-control" id="exampleInputPassword1">
-				</div>
-				<div class="form-group">
-					 
-					<label for="exampleInputFile">
-						File input
-					</label>
-					<input type="file" class="form-control-file" id="exampleInputFile">
-					<p class="help-block">
-						Example block-level help text here.
-					</p>
-				</div>
-				<div class="checkbox">
-					 
-					<label>
-						<input type="checkbox"> Check me out
-					</label>
-				</div> 
-				<button type="submit" class="btn btn-primary">
-					Submit
-				</button>
-			</form>
-		</div>
-		<div class="col-md-4">
 		</div>
 	</div>
 </div>
