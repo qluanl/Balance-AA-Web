@@ -2,42 +2,34 @@
 
 <form id="my-form">
   
-    <div class="mui-input-row">
-      <label>Money<span>RMB</span></label>
-      <input type="tel" class="capital mui-input-clear" value="0.00">
-  </div>
+  Event6: <input id="Subtotal" value="0.00" name="Subtotal" type="tel" onkeyup="formatMoneyPos(this)" required="required" class="form-control">
+  <input type="button" name="SignChange" value="+/-" data-id="Subtotal" onclick="signChange(this)">
+  <br>
   <input type="submit" />
 </form>
 
 <script>
-    var precapital;
-document.querySelector('.capital').addEventListener('focus', function() {
-    if (this.value == '0.00') {
-        this.value = '';
-    } else {
-        this.value = this.value.replace(/\.00/, '').replace(/(\.\d)0/,'$1');
+    function formatMoneyPos(obj){
+        var sign;
+        if (obj.value.match(/^\-/)){sign = '-';} else {sign = '';}
+        obj.value = obj.value.replace(/[^0-9]+/g,"");
+        if (obj.value.length < 3){
+            obj.value = "000" + obj.value;
+        }
+        obj.value = obj.value.slice(0,obj.value.length-2) +"."+ obj.value.slice(obj.value.length-2);
+        obj.value = obj.value.replace(/^0+/g,'');
+        obj.value = obj.value.replace(/^\./g,'0.');
+        obj.value = sign + obj.value;
     }
-    precapital = this.value;
-});
-document.querySelector('.capital').addEventListener('keyup', function() {
-
-    this.value = this.value.replace(/^[\.]/, '').replace(/[^\d.]/g, '');
-    if (this.value.split(".").length - 1 > 1) {
-        this.value = precapital;
+    
+    function signChange(obj){
+        var inputSec = document.getElementById(obj.dataset.id);
+        var value = inputSec.value;
+        if (value.match(/^\-/)){
+            inputSec.value = inputSec.value.replace(/^\-/,"");
+        } else {
+            inputSec.value = '-'+inputSec.value;
+        }
     }
-    precapital = this.value;
-});
-document.querySelector('.capital').addEventListener('blur', function() {
-    this.value = this.value.replace(/[\.]$/, '');
-    this.value = this.value.replace(/(.*)\.([\d]{2})(\d*)/g,'$1.$2');
-    this.value = Number(this.value).toFixed(2);
-    var logNum = this.value.toString();
-    if(logNum.match(/\./g) != null){
-        integerNum = parseInt(logNum).toString().replace(/\d(?=(\d{3})+$)/g,'$&,');
-        decimalNum = '.' + logNum.replace(/(.*)\.(.*)/g,'$2');
-        document.querySelector(".logbox").innerHTML = integerNum+decimalNum;
-    }else{
-        document.querySelector(".logbox").innerHTML = logNum.replace(/\d(?=(\d{3})+$)/g,'$&,');
-    }
-});
+    
 </script>

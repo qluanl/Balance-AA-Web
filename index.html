@@ -151,7 +151,8 @@
   <div class="form-group">
     <label for="Subtotal">Subtotal (non taxed)</label> 
     <div class="input-group">
-      <input id="Subtotal" name="Subtotal" placeholder="0.00" type="number" pattern="[0-9]*" required="required" class="form-control">
+      <input id="Subtotal" value="0.00" name="Subtotal" type="tel" onkeyup="formatMoneyPos(this)" required="required" class="form-control">
+      <input type="button" name="SignChange" value="+/-" data-id="Subtotal" onclick="signChange(this)">
     </div>
   </div>
   <div class="form-group">
