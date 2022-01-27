@@ -1,6 +1,6 @@
 // Empty JS for your own code to be here
 
-function formatMoneyPos(obj){
+function formatMoney(obj){
     var sign;
     if (obj.value.match(/^\-/)){sign = '-';} else {sign = '';}
     obj.value = obj.value.replace(/[^0-9]+/g,"");

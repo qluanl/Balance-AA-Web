@@ -151,32 +151,25 @@
   <div class="form-group">
     <label for="Subtotal">Subtotal (non taxed)</label> 
     <div class="input-group">
-      <input id="Subtotal" value="0.00" name="Subtotal" type="tel" onkeyup="formatMoneyPos(this)" onkeypress="formatMoneyPos(this)" required="required" class="form-control">
-      <input type="button" name="SignChange" value="+/-" data-id="Subtotal" onclick="signChange(this)">
+      <input id="Subtotal" value="0.00" name="Subtotal" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" required="required" class="form-control">
+      <input type="button" class="btn btn-secondary" name="SignChange" value="+/-" data-id="Subtotal" onclick="signChange(this)">
     </div>
   </div>
   <div class="form-group">
     <label for="Tax">Tax</label> 
     <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <i class="fa fa-usd"></i>
-        </div>
-      </div> 
-      <input id="Tax" name="Tax" placeholder="0.00" type="number" pattern="[0-9\.]+" class="form-control" required="required">
+      <input id="Tax" value="0.00" name="Tax" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" required="required" class="form-control">
+      <input type="button" class="btn btn-success" name="SignChange" value="+/-" data-id="Tax" onclick="signChange(this)">
     </div>
   </div>
   <div class="form-group">
     <label for="Tips">Tips / Service fee</label> 
     <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <i class="fa fa-usd"></i>
-        </div>
-      </div> 
-      <input id="Tips" name="Tips" placeholder="0.00" type="number" pattern="[0-9\.]+" class="form-control" required="required">
+      <input id="Tips" value="0.00" name="Tips" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" required="required" class="form-control">
+      <input type="button" name="SignChange" value="+/-" data-id="Tips" onclick="signChange(this)">
     </div>
   </div>
+  
   <div class="form-group">
     <label for="Logger">Logger</label> 
     <input id="Logger" name="Logger" placeholder="Logger name" type="text" class="form-control" required="required">
