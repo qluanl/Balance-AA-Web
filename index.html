@@ -1,218 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 4, from LayoutIt!</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
+  <title>Balance AA - A Better Way to Log the Bill</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    
+  <meta name="description" content="Part of the code generated using layoutit.com">
+  <meta name="author" content="WhiteBook">
 
-  </head>
-  <body>
+  <link href="css/bootstrap.css" rel="stylesheet">
 
-    <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-3">
-		</div>
-		<div class="col-md-6">
-			<h3>
-                <br><br>
-				Balance AA - 4
-			</h3>
-			<p>
-				This is a balance AA project.
-			</p> 
-			<button type="button" class="btn btn-block btn-info">
-				Get balance
-			</button> 
-			<button type="button" class="btn btn-block btn-danger">
-				Send email
-			</button>
-            <label>
-                <small>Send the email with the current balance and the optimal transfer solution to everyone.</small>
-            </label>
-			<form role="form">
-				<div class="form-group">
-					 
-					<label for="EventName">
-						Event Name
-					</label>
-					<input type="text" class="form-control" id="EventName">
-				</div>
-                
-                
-                
-				<div class="form-group">
-					 
-					<label for="exampleInputFile">
-						File input
-					</label>
-					<input type="file" class="form-control-file" id="exampleInputFile">
-					<p class="help-block">
-						Example block-level help text here.
-					</p>
-				</div>
-				<div class="checkbox">
-					 
-					<label>
-						<input type="checkbox"> Check me out
-					</label>
-				</div> 
-				<button type="submit" class="btn btn-primary">
-					Submit
-				</button>
-			</form>
-            
+  <link href="css/mystyle.css" rel="stylesheet">
 
-<form>
-  <div class="form-group">
-    <label for="EventName">Event Name</label> 
-    <input id="EventName" name="EventName" value="TestName" placeholder="Name" type="text" class="form-control" required="required">
-  </div>
-  
-  <div class="form-group">
-       
-      <label for="DateOfEvent">
-          Date
-      </label>
-      <input type="date" placeholder="Date of event" class="form-control" id="DateOfEvent" required="required">
-  </div>
-  <div class="form-group">
-    <label for="Currency">Currency</label> 
-    <div>
-      <select id="Currency" name="Currency" class="custom-select" aria-describedby="CurrencyHelpBlock" required="required">
-        <option value="USD">US Dollar</option>
-        <option value="CNY">Chinese Yuan (RMB)</option>
-        <option value="EUR">EEE</option>
-      </select> 
-      <span id="CurrencyHelpBlock" class="form-text text-muted">Notice: Any other currency would be automatically converted into US dollar based on the current ratio while submitting to the google form.</span>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label>Members</label> 
-    <div>
-      <div class="custom-controls-stacked">
-        <div class="custom-control custom-checkbox">
-          <input name="Members" id="Members_0" type="checkbox" checked="checked" required="required" class="custom-control-input" value="Shenggao Li"> 
-          <span class="custom-control-indicator"></span>
-          <label for="Members_0" class="custom-control-label">Shenggao Li</label>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/html_template.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/exe_script_prev.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <h2><br>Balance AA</h2>
+        <p>
+          This is a balance AA project developed by WhiteBook.
+        </p>
+        <button type="button" class="btn btn-block btn-info">
+          Get balance
+        </button>
+        <label class="form-text text-muted">
+          <small>Review the current balance. (under development)</small>
+        </label>
+        <hr>
+        <button type="button" class="btn btn-block btn-danger">
+          Send email
+        </button>
+        <label class="form-text text-muted">
+          <small>Send the email with the current balance and the optimal transfer solution to everyone. (under development)</small>
+        </label>
+
+        <div class="hrDiv-heavy"></div>
+
+        <h4>Upload a new payment event</h4>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="setMenu('1')" id="Menu_1">Payment event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="setMenu('2')" id="Menu_2">Person to person transfer</a>
+          </li>
+        </ul>
+
+
+        <br>
+
+        <div class="hide" id='Page_1'>
+          <form id='event-upload-form'>
+            <div class="form-group">
+              <h6>Event Name</h6>
+              <input id="EventName" name="EventName" value="TestName" placeholder="Name" type="text" class="form-control" required="required">
+            </div>
+
+            <div class="form-group">
+
+              <h6>
+                Date
+              </h6>
+              <input type="date" name="Date" value="" class="form-control" id="DateOfEvent" required="required">
+              <script>
+                document.getElementById("DateOfEvent").value = new Date().toISOString().slice(0, 10);
+              </script>
+            </div>
+            <div class="form-group">
+              <h6>Currency</h6>
+              <div>
+                <select id="Currency" name="Currency" class="form-control" aria-describedby="CurrencyHelpBlock" required="required">
+                  <option value='Loading'>Loading...</option>
+                </select>
+                <span id="CurrencyHelpBlock" class="form-text text-muted"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <h6>Members</h6>
+              <div id="Members">
+                <div>
+                  <div class='custom-controls-stacked'>
+                    <div class='custom-control custom-checkbox'>
+                      <input name='Members' id='Members_aFakeName' type='checkbox' checked='checked' required='required' class='custom-control-input' value='aFakeName'>
+                      <span class='custom-control-indicator'></span>
+                      <label for='Members_aFakeName' class='custom-control-label'>aFakeName</label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <h6>Payer</h6>
+              <div id="Payer">
+
+                <div>
+                  <div class='custom-controls-stacked'>
+                    <div class='custom-control custom-radio'>
+                      <input name='Payer' id='Payer_aFakeName' type='radio' required='required' class='custom-control-input' value='aFakeName'>
+                      <span class='custom-control-indicator'></span>
+                      <label for='Payer_aFakeName' class='custom-control-label'>aFakeName</label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="hrDiv"></div>
+            <h6>Sharing part</h6>
+            <div class="form-group">
+              <label>Subtotal (non taxed)</label>
+              <div class="input-group">
+                <input id="Subtotal" value="0.00" name="Subtotal" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" onfocus="clearDefaultValue(this,'0.00')" onblur="restoreDefaultValue(this,'0.00')" required="required"
+                  class="form-control">
+                <input type="button" class="btn btn-signflip btn-success" value="+/-" data-id="Subtotal" onclick="signChange(this)" disabled></input>
+                </input>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Tax</label>
+              <div class="input-group">
+                <input id="Tax" value="0.00" name="Tax" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" onfocus="clearDefaultValue(this,'0.00')" onblur="restoreDefaultValue(this,'0.00')" required="required" class="form-control">
+                <input type="button" class="btn btn-signflip btn-success" value="+/-" data-id="Tax" onclick="signChange(this)">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Tips / Service fee / Discount ...</label>
+              <div class="input-group">
+                <input id="Tips" value="0.00" name="Tips" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" onfocus="clearDefaultValue(this,'0.00')" onblur="restoreDefaultValue(this,'0.00')" required="required"
+                  class="form-control">
+                <input type="button" class="btn btn-signflip btn-success" value="+/-" data-id="Tips" onclick="signChange(this)">
+              </div>
+            </div>
+            <div class="form-group">
+              <!-- <label>Custom the weighting for sharing items</label>  -->
+              <div class='custom-controls-stacked'>
+                <div class='custom-control custom-checkbox' id='container-weighting-checkbox'>
+                  <input name='weighting-checkbox' id='weighting-checkbox' type='checkbox' class='custom-control-input' value='weighting_checked' onclick='refreshWeighting()'>
+                  <span class='custom-control-indicator'></span>
+                  <label for='weighting-checkbox' class='custom-control-label'>Custom the weighting for sharing part</label>
+                </div>
+
+              </div>
+
+            </div>
+            <!-- <hr> -->
+            <!-- <div class="hrDiv"> -->
+            <div class="form-group">
+              <div id="Weighting">
+                <div>
+                  <label for="slider_aFakeName" id="slider_aFakeName_label"> aFakeName </label>
+                  <div class="input-group">
+                    <input id="slider_aFakeName_input" data-id="slider_aFakeName" value="1.00" name="slider-input_aFakeID" type="tel" onfocus="clearDefaultValue(this,'1.00')" onblur="restoreDefaultValue(this,'1.00');formatWeighting(this)"
+                      onkeyup="formatWeighting(this)" onkeypress="formatWeighting(this)" required="required" class="form-control slider-value">
+                    <input id="slider_aFakeName" type="range" class="custom-slider" value="1" min="0" max="10" step="0.01">
+                  </div>
+                  <hr>
+                </div>
+              </div>
+              <div class="hrDiv"></div>
+
+            </div>
+
+
+
+            <h6>Items not share</h6>
+
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" id="Item-Name" placeholder="Item Name" class="form-control input-display-item" readonly></input>
+                <input type="text" id="Item-Price" placeholder="Item Price (non-taxed)" class="form-control input-display-item" readonly></input>
+              </div>
+
+              <div class="input-group">
+                <input type="text" id="Item-User" placeholder="Item User" class="form-control input-display-item" readonly></input>
+                <input id='Item-Add' type="button" class="btn btn-outline-primary btn-delete-item" name="AddItem" value="Add" onclick="addItem()"></input>
+              </div>
+            </div>
+
+            <div class="form-group" id="item-list">
+
+            </div>
+
+            <div class="form-group">
+              <h6>Logger</h6>
+              <input id="Logger" name="Logger" placeholder="Logger name" type="text" class="form-control" required="required">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" style="float:right">Generate the form</button>
+              <div style="clear:both"></div>
+            </div>
+          </form>
+
+          <div class="hrDiv"></div>
+          
+          <div class="hide" id='upload-table'>
+            <h5 id='upload-table-event'></h5>
+            <h6 id='upload-table-date'></h6>
+            <h6 id='upload-table-currency'></h6>
+            <h6 id='upload-table-currencyRate'></h6>
+            <table class="table" id='upload-table-item'>
+              <thead id='upload-table-item-head'>
+              </thead>
+              <tbody id='upload-table-item-body'>
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-primary" style="float:right" onclick="submitEvent()">Submit the form</button>
+            <div style="clear:both"></div>
+          </div>
+
+          
         </div>
-      </div>
-      <div class="custom-controls-stacked">
-        <div class="custom-control custom-checkbox">
-          <input name="Members" id="Members_1" type="checkbox" checked="checked" required="required" class="custom-control-input" value="Bozhao Nan"> 
-          <span class="custom-control-indicator"></span>
-          <label for="Members_1" class="custom-control-label">Bozhao Nan</label>
-        </div>
-      </div>
-      <div class="custom-controls-stacked">
-        <div class="custom-control custom-checkbox">
-          <input name="Members" id="Members_2" type="checkbox" checked="checked" required="required" class="custom-control-input" value="Danchen Zhao"> 
-          <span class="custom-control-indicator"></span>
-          <label for="Members_2" class="custom-control-label">Danchen Zhao</label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Payer</label> 
-    <div>
-      <div class="custom-controls-stacked">
-        <div class="custom-control custom-radio">
-          <input name="Payer" id="Payer_0" type="radio" required="required" class="custom-control-input" value="Shenggao Li" checked="checked"> 
-          <span class="custom-control-indicator"></span>
-          <label for="Payer_0" class="custom-control-label">Shenggao Li</label>
-        </div>
-      </div>
-      <div class="custom-controls-stacked">
-        <div class="custom-control custom-radio">
-          <input name="Payer" id="Payer_1" type="radio" required="required" class="custom-control-input" value="Bozhao Nan"> 
-          <span class="custom-control-indicator"></span>
-          <label for="Payer_1" class="custom-control-label">Bozhao Nan</label>
-        </div>
-      </div>
-      <div class="custom-controls-stacked">
-        <div class="custom-control custom-radio">
-          <input name="Payer" id="Payer_2" type="radio" required="required" class="custom-control-input" value="Danchen Zhao"> 
-          <span class="custom-control-indicator"></span>
-          <label for="Payer_2" class="custom-control-label">Danchen Zhao</label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="Subtotal">Subtotal (non taxed)</label> 
-    <div class="input-group">
-      <input id="Subtotal" value="0.00" name="Subtotal" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" required="required" class="form-control">
-      <input type="button" class="btn btn-secondary" name="SignChange" value="+/-" data-id="Subtotal" onclick="signChange(this)">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="Tax">Tax</label> 
-    <div class="input-group">
-      <input id="Tax" value="0.00" name="Tax" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" required="required" class="form-control">
-      <input type="button" class="btn btn-success" name="SignChange" value="+/-" data-id="Tax" onclick="signChange(this)">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="Tips">Tips / Service fee</label> 
-    <div class="input-group">
-      <input id="Tips" value="0.00" name="Tips" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" required="required" class="form-control">
-      <input type="button" name="SignChange" value="+/-" data-id="Tips" onclick="signChange(this)">
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label for="Logger">Logger</label> 
-    <input id="Logger" name="Logger" placeholder="Logger name" type="text" class="form-control" required="required">
-  </div>
-  <div class="form-group">
-    <label for="select">Select</label> 
-    <div>
-      <select id="select" name="select" class="custom-select">
-        <option value="rabbit">Rabbit</option>
-        <option value="duck">Duck</option>
-        <option value="fish">Fish</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Radio Buttons</label> 
-    <div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input name="radio" id="radio_0" type="radio" class="custom-control-input" value="rabbit"> 
-        <label for="radio_0" class="custom-control-label">Rabbit</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input name="radio" id="radio_1" type="radio" class="custom-control-input" value="duck"> 
-        <label for="radio_1" class="custom-control-label">Duck</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input name="radio" id="radio_2" type="radio" class="custom-control-input" value="fish"> 
-        <label for="radio_2" class="custom-control-label">Fish</label>
-      </div>
-    </div>
-  </div> 
-  <div class="form-group">
-    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-  </div>
-</form>
-		</div>
-		<div class="col-md-3">
-		</div>
-	</div>
-</div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-  </body>
+        <div class="hide" id='Page_2'>
+          <form id='P2P-upload-form'>
+            <div class="form-group">
+              <h6>Event Name</h6>
+              <input id="EventName_P2P" name="EventName" value="TestName" placeholder="Name" type="text" class="form-control" required="required">
+            </div>
+
+            <div class="form-group">
+
+              <h6>
+                Date
+              </h6>
+              <input type="date" name="Date" value="" class="form-control" id="DateOfEvent_P2P" required="required">
+              <script>
+                document.getElementById("DateOfEvent_P2P").value = new Date().toISOString().slice(0, 10);
+              </script>
+            </div>
+            <div class="form-group">
+              <h6>Currency</h6>
+              <div>
+                <select id="Currency_P2P" name="Currency" class="form-control" aria-describedby="CurrencyHelpBlock" required="required">
+                  <option value='Loading'>Loading...</option>
+                </select>
+                <span id="CurrencyHelpBlock_P2P" class="form-text text-muted"></span>
+              </div>
+            </div>
+
+            <h6>From / Payed by</h6>
+            <div id="Member_P2P_From">
+
+
+            </div>
+
+            <div class="form-group">
+              <label>Total amount</label>
+              <div class="input-group">
+                <input id="Total" value="0.00" name="Total" type="tel" onkeyup="formatMoney(this)" onkeypress="formatMoney(this)" onfocus="clearDefaultValue(this,'0.00')" onblur="restoreDefaultValue(this,'0.00')" required="required"
+                  class="form-control">
+                <input type="button" class="btn btn-signflip btn-success" value="+/-" data-id="Total" onclick="signChange(this)"></input>
+                </input>
+              </div>
+            </div>
+
+            <h6>To / Payed for</h6>
+            <div id="Member_P2P_To">
+
+
+            </div>
+
+            <div class="form-group">
+              <h6>Logger</h6>
+              <input id="Logger_P2P" name="Logger" placeholder="Logger name" type="text" class="form-control" required="required">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
+              <div style="clear:both"></div>
+            </div>
+
+          </form>
+
+
+
+        </div>
+
+        <div class="hrDiv-heavy"></div>
+
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/exe_script_post.js"></script>
+</body>
+
 </html>
