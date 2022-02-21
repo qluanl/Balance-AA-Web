@@ -57,9 +57,9 @@ function refreshMembersList() {
 }
 
 function refreshMembers(obj){
-  updatePayer(obj.value, !obj.checked);
-  updateWeighting(obj.value, !obj.checked);
-  updateItemUser(obj.value, !obj.checked)
+  updatePayer(obj.dataset.name, !obj.checked);
+  updateWeighting(obj.dataset.name, !obj.checked);
+  updateItemUser(obj.dataset.name, !obj.checked)
 }
 
 function refreshMember_P2P(element_ID) {
@@ -75,7 +75,7 @@ function refreshMember_P2P(element_ID) {
     //Generate new options
     for (i = 0; i < members_check_box.length; i++) {
       let member_html = document.createElement("div");
-      member_html.innerHTML = generateFromTemp(html_template_Member_P2P, members_check_box[i].value);
+      member_html.innerHTML = generateFromTemp(html_template_Member_P2P, members_check_box[i].dataset.name);
       member_html.innerHTML = member_html.innerHTML.replace(/ElementID/g, element_ID);
       member_containter.appendChild(member_html);
     }
@@ -94,7 +94,7 @@ function refreshPayer() {
     //Generate new options
     for (i = 0; i < members_check_box.length; i++) {
         if (members_check_box[i].checked) {
-            payer_containter.appendChild(createPayer(members_check_box[i].value));
+            payer_containter.appendChild(createPayer(members_check_box[i].dataset.name));
         }
     }
 }
@@ -149,7 +149,7 @@ function refreshWeighting() {
           if (!first_line){weighting_containter.appendChild(document.createElement("hr"));}
           first_line = false;
         // console.log(members_check_box[i].value);
-          weighting_containter.appendChild(createWeightingSlider(members_check_box[i].value));
+          weighting_containter.appendChild(createWeightingSlider(members_check_box[i].dataset.name));
           appendSliderCallback("slider_" + name2ID(members_check_box[i].value));
         }
       }
@@ -208,7 +208,7 @@ function addItem() {
     //Generate new options
     for (i = 0; i < members_check_box.length; i++) {
         if (members_check_box[i].checked) {
-          document.getElementById("item-user-"+itemNumber).appendChild(createItemUserOption(members_check_box[i].value));
+          document.getElementById("item-user-"+itemNumber).appendChild(createItemUserOption(members_check_box[i].dataset.name));
         }
     }
     itemNumberDict[itemNumber] = true;
@@ -615,6 +615,43 @@ function P2Pupload(){
   submitDict(p2p_dict);
 }
 
+function sendEmail(){
+  if (getCookie('SendEmailFlag') == 'Send'){
+    alert('You have sent an email in 10 mins. You are not allowed to send another email until 10 mins after your last one.');
+  }else{
+    var r = confirm("A notification email with the optimal transfer solution would be send.\n Are you sure?");
+    if (r == true) {
+      let post_data_array = [];
+      post_data_array.push(Event_ID+'='+'SendEmailRequest');
+      post_data_array.push(Date_ID+'='+'NA');
+      for (let member_name in Members){
+        post_data_array.push(Members[member_name]+'='+'0');
+      }
+      post_data_array.push(Logger_ID+'='+checkCookie());
+      let ajax_request = $.ajax({
+        url: Form_URL,     //The public Google Form url, but replace /view with /formResponse
+        data: post_data_array.join('&'), //Nifty jquery function that gets all the input data 
+        type: 'POST', //tells ajax to post the data to the url
+        dataType: "json", //the standard data type for most ajax requests
+        complete: function(XMLHttpRequest, textStatus) {
+          
+          let status_code = XMLHttpRequest.status;
+          if (status_code == 200 || status_code == 0){
+            // success
+            console.log('Email sending request success!');
+            alert('Email has been sent.');
+          }else{
+            alert('[Error] Failed to send email! Please check your network.');
+            success_flag = false;
+          }
+        }
+      });
+      setCookie_min('SendEmailFlag','Send',10);
+    }
+  }
+  
+}
+
 function submitEvent(){
   let event_form_data = $('#event-upload-form').serialize();
   if (EventFormCheck == event_form_data){
@@ -650,7 +687,7 @@ function submitDict(dict){
       type: 'POST', //tells ajax to post the data to the url
       dataType: "json", //the standard data type for most ajax requests
       complete: function(XMLHttpRequest, textStatus) {
-        console.log(XMLHttpRequest);
+        // console.log(XMLHttpRequest);
         let status_code = XMLHttpRequest.status;
         if (status_code == 200 || status_code == 0){
           // success
@@ -704,6 +741,13 @@ function setCookie(cname,cvalue,exdays)
   let expires = "expires="+d.toGMTString();
   document.cookie = cname + "=" + cvalue + "; " + expires;
 }
+function setCookie_min(cname,cvalue,exmins)
+{
+  let d = new Date();
+  d.setTime(d.getTime()+(exmins*60*1000));
+  let expires = "expires="+d.toGMTString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
+}
 
 function getCookie(cname)
 {
@@ -724,7 +768,10 @@ function checkCookie()
   {
     document.getElementById('Logger').value = logger_name;
     document.getElementById('Logger_P2P').value = logger_name;
+  }else{
+    logger_name = 'A New User';
   }
+  return logger_name;
 }
 
 function ColorToHex(color) {

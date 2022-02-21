@@ -1,6 +1,6 @@
 var html_template_Member = "<div class'custom-controls-stacked'>\
   <div class='custom-control custom-checkbox'>\
-    <input name='Members' id='Members_aFakeID' type='checkbox' onclick='refreshMembers(this)' checked='checked' class='custom-control-input members-check-box' value='aFakeID'>\
+    <input name='Members' id='Members_aFakeID' type='checkbox' onclick='refreshMembers(this)' checked='checked' class='custom-control-input members-check-box' value='aFakeID' data-name='aFakeName'>\
     <span class='custom-control-indicator'></span>\
     <label for='Members_aFakeID' class='custom-control-label'>aFakeName</label>\
   </div>\
