@@ -2,13 +2,15 @@
 // Since this project is designed as a pure front-end web page.
 // Please manually update the following settings.
 
+// 'https://docs.google.com/forms/d/e/1FAIpQLSceJ0t-TVHj6dvLThPfUtE1qb1GNNOA5d2WA96tkYfmum8Tpw/viewform?usp=pp_url&entry.1188823202=Event&entry.46915416=Date&entry.1920471650=Bozhao&entry.1531838934=Danchen&entry.1759055247=Xiangyu&entry.213037393=Shenggao&entry.667621715=Logger'
+
 // Google form id and members list
-const Form_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe355IeSjpJ96u4aMbJyQJlTfeEbHVXIfIWqI8T_3UTPI58pQ/formResponse";
-const Event_ID = "entry.469101692";
-const Date_ID = "entry.1771075131";
+const Form_URL = "https://docs.google.com/forms/d/e/1FAIpQLSceJ0t-TVHj6dvLThPfUtE1qb1GNNOA5d2WA96tkYfmum8Tpw/formResponse";
+const Event_ID = "entry.1188823202";
+const Date_ID = "entry.46915416";
 // const Members_Name = ["Shenggao Li", "Bozhao Nan"];
 // const Members_ID = ["entry.2022912751", "entry.1675431857"];
-const Members = {"Shenggao Li":"entry.2022912751", "Bozhao Nan":"entry.1675431857"};
+const Members = {"Bozhao Nan":"entry.1920471650", "Danchen Zhao":"entry.1531838934", "Xiangyu Xu":"entry.1759055247", "Shenggao Li":"entry.213037393"};
 const Logger_ID = "entry.681409226";
 
 const Currency_API_Key = "07d4b1316babca3cb71b9871"; // Key for https://v6.exchangerate-api.com
