@@ -622,7 +622,7 @@ function sendEmail(){
     var r = confirm("A notification email with the optimal transfer solution would be send.\n Are you sure?");
     if (r == true) {
       let post_data_array = [];
-      post_data_array.push(Event_ID+'='+'SendEmailRequest_test');
+      post_data_array.push(Event_ID+'='+'SendEmailRequest');
       post_data_array.push(Date_ID+'='+'NA');
       for (let member_name in Members){
         post_data_array.push(Members[member_name]+'='+'0');
