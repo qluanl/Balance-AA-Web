@@ -622,31 +622,36 @@ function sendEmail(){
     var r = confirm("A notification email with the optimal transfer solution would be send.\n Are you sure?");
     if (r == true) {
       let post_data_array = [];
-      post_data_array.push(Event_ID+'='+'SendEmailRequest');
+      post_data_array.push(Event_ID+'='+'SendEmailRequest_test');
       post_data_array.push(Date_ID+'='+'NA');
       for (let member_name in Members){
         post_data_array.push(Members[member_name]+'='+'0');
       }
-      post_data_array.push(Logger_ID+'='+checkCookie());
-      let ajax_request = $.ajax({
-        url: Form_URL,     //The public Google Form url, but replace /view with /formResponse
-        data: post_data_array.join('&'), //Nifty jquery function that gets all the input data 
-        type: 'POST', //tells ajax to post the data to the url
-        dataType: "json", //the standard data type for most ajax requests
-        complete: function(XMLHttpRequest, textStatus) {
-          
-          let status_code = XMLHttpRequest.status;
-          if (status_code == 200 || status_code == 0){
-            // success
-            console.log('Email sending request success!');
-            alert('Email has been sent.');
-          }else{
-            alert('[Error] Failed to send email! Please check your network.');
-            success_flag = false;
+      let logger_name = getLoggerName();
+      if (logger_name != null)
+      {
+      post_data_array.push(Logger_ID+'='+logger_name);
+      setLoggerCookie(logger_name);
+        let ajax_request = $.ajax({
+          url: Form_URL,     //The public Google Form url, but replace /view with /formResponse
+          data: post_data_array.join('&'), //Nifty jquery function that gets all the input data 
+          type: 'POST', //tells ajax to post the data to the url
+          dataType: "json", //the standard data type for most ajax requests
+          complete: function(XMLHttpRequest, textStatus) {
+        
+            let status_code = XMLHttpRequest.status;
+            if (status_code == 200 || status_code == 0){
+              // success
+              console.log('Email sending request success!');
+              alert('Email has been sent.');
+            }else{
+              alert('[Error] Failed to send email! Please check your network.');
+              success_flag = false;
+            }
           }
-        }
-      });
-      setCookie_min('SendEmailFlag','Send',10);
+        });
+        setCookie_min('SendEmailFlag','Send',10);
+      }
     }
   }
   
@@ -768,8 +773,20 @@ function checkCookie()
   {
     document.getElementById('Logger').value = logger_name;
     document.getElementById('Logger_P2P').value = logger_name;
-  }else{
-    logger_name = 'A New User';
+  }
+}
+
+function getLoggerName()
+{
+  let logger_name=getCookie("LoggerName");
+  let prompt_message = "Please Enter Your Name";
+  if (logger_name=="")
+  {
+    while (logger_name=="") {
+      logger_name = prompt(prompt_message, "");
+      if (logger_name=="")
+      {prompt_message = "User Name CANNOT Be Empty!\nPlease Enter Your Name";}
+    }
   }
   return logger_name;
 }
