@@ -10,7 +10,7 @@ const Event_ID = "entry.1188823202";
 const Date_ID = "entry.46915416";
 // const Members_Name = ["Shenggao Li", "Bozhao Nan"];
 // const Members_ID = ["entry.2022912751", "entry.1675431857"];
-const Members = {"Bozhao Nan":"entry.1920471650", "Danchen Zhao":"entry.1531838934", "Xiangyu Xu":"entry.1759055247", "Shenggao Li":"entry.213037393"};
+const Members = {"Bozhao Nan":"entry.1920471650", "Danchen Zhao":"entry.1531838934", "Yipu Du":"entry.1759055247", "Shenggao Li":"entry.213037393"};
 const Logger_ID = "entry.667621715";
 
 const Currency_API_Key = "07d4b1316babca3cb71b9871"; // Key for https://v6.exchangerate-api.com
