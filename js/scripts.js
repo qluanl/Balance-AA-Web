@@ -555,7 +555,9 @@ function generateUploadDict(){
   // shareDict[payerID] += taxedShare;
   // tipsDict[payerID] += tips;
   itemDictList.push(shareDict);
-  itemDictList.push(tipsDict);
+  if (tips != 0){
+    itemDictList.push(tipsDict);
+  }
   
   // Payment
   let paymentDict = newEmptyItemDict('Payment');
@@ -686,32 +688,32 @@ function submitDict(dict){
     post_data_array.push(Logger_ID+'='+dict['Logger']);
     // console.log(post_data_arraya);
     ajax_state_dict[item_dict['item_name']] = false;
-    let ajax_request = $.ajax({
-      url: Form_URL,     //The public Google Form url, but replace /view with /formResponse
-      data: post_data_array.join('&'), //Nifty jquery function that gets all the input data 
-      type: 'POST', //tells ajax to post the data to the url
-      dataType: "json", //the standard data type for most ajax requests
-      complete: function(XMLHttpRequest, textStatus) {
-        // console.log(XMLHttpRequest);
-        let status_code = XMLHttpRequest.status;
-        if (status_code == 200 || status_code == 0){
-          // success
-          console.log('Submit success: ' + item_dict['item_name']);
-        }else{
-          alert('[Error] Failed to submit item: ' + item_dict['item_name'] + '! Please check the google sheet manually!');
-          success_flag = false;
-        }
-        
-        ajax_state_dict[item_dict['item_name']] = true;
-        let ajax_state_all = true;
-        for (let ajax_state of Object.values(ajax_state_dict)){ajax_state_all = ajax_state && ajax_state_all;}
-        if (ajax_state_all){
-          if (success_flag){
-            alert('Submitted All!');
-          }
-        }
-      }
-    });
+    // let ajax_request = $.ajax({
+    //   url: Form_URL,     //The public Google Form url, but replace /view with /formResponse
+    //   data: post_data_array.join('&'), //Nifty jquery function that gets all the input data 
+    //   type: 'POST', //tells ajax to post the data to the url
+    //   dataType: "json", //the standard data type for most ajax requests
+    //   complete: function(XMLHttpRequest, textStatus) {
+    //     // console.log(XMLHttpRequest);
+    //     let status_code = XMLHttpRequest.status;
+    //     if (status_code == 200 || status_code == 0){
+    //       // success
+    //       console.log('Submit success: ' + item_dict['item_name']);
+    //     }else{
+    //       alert('[Error] Failed to submit item: ' + item_dict['item_name'] + '! Please check the google sheet manually!');
+    //       success_flag = false;
+    //     }
+    // 
+    //     ajax_state_dict[item_dict['item_name']] = true;
+    //     let ajax_state_all = true;
+    //     for (let ajax_state of Object.values(ajax_state_dict)){ajax_state_all = ajax_state && ajax_state_all;}
+    //     if (ajax_state_all){
+    //       if (success_flag){
+    //         alert('Submitted All!');
+    //       }
+    //     }
+    //   }
+    // });
   }
   
   
