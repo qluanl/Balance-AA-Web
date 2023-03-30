@@ -686,7 +686,7 @@ function submitDict(dict){
       post_data_array.push(Members[member_name]+'='+(item_dict[name2ID(member_name)] * exchange_rate));
     }
     post_data_array.push(Logger_ID+'='+dict['Logger']);
-    // console.log(post_data_arraya);
+    console.log(post_data_arraya);
     ajax_state_dict[item_dict['item_name']] = false;
     // let ajax_request = $.ajax({
     //   url: Form_URL,     //The public Google Form url, but replace /view with /formResponse
