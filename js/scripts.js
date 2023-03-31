@@ -637,7 +637,7 @@ function sendEmail(){
         let ajax_request = $.ajax({
           url: Form_URL,     //The public Google Form url, but replace /view with /formResponse
           data: post_data_array.join('&'), //Nifty jquery function that gets all the input data 
-          type: 'POST', //tells ajax to post the data to the url
+          type: 'GET', //tells ajax to post the data to the url
           dataType: "json", //the standard data type for most ajax requests
           complete: function(XMLHttpRequest, textStatus) {
         
@@ -692,7 +692,7 @@ function submitDict(dict){
     let ajax_request = $.ajax({
       url: Form_URL,     //The public Google Form url, but replace /view with /formResponse
       data: post_data_array.join('&'), //Nifty jquery function that gets all the input data 
-      type: 'POST', //tells ajax to post the data to the url
+      type: 'GET', //tells ajax to post the data to the url
       dataType: "json", //the standard data type for most ajax requests
       complete: function(XMLHttpRequest, textStatus) {
         // console.log(XMLHttpRequest);
