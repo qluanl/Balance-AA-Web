@@ -1,0 +1,176 @@
+/*****************************************
+******* JavaScript Popup Prototype  ******
+*****************************************/
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+@keyframes displayPopup
+{
+    from
+    {
+        opacity: 0;
+    }
+    to
+    {
+        opacity: 1;
+    }
+}
+
+@keyframes hidePopup
+{
+    from
+    {
+        opacity: 1;
+    }
+    to
+    {
+        opacity: 0;
+    }
+}
+
+.overlay
+{
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    transform: translateZ(10px);
+    animation-name: displayPopup;
+    animation-duration: .35s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+
+    opacity: 0;
+    background: rgba(0,0,0,.9);
+
+    animation-fill-mode: forwards;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.popup *
+{
+    font-family: font-family: Raleway, Helvetica, Arial, sans-serif;
+}
+
+.popup
+{
+    position: relative;
+
+    overflow: hidden;
+
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    padding: 0;
+
+    border-radius: 10px;
+    background: #eee;
+    background: linear-gradient(#333 0%, #333 5%, #eee 5%, #eee 100%);
+    box-shadow: 0 0 5px 1px rgba(0,0,0,.75);
+}
+
+.popup .titleBar
+{
+    position: relative;
+
+    display: flex;
+
+    width: 100%;
+    height: auto;
+    margin: 0 0 10px;
+    padding: 0;
+
+    background: #3daddb;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.popup .titleBar span
+{
+    font-size: 1.5em;
+    font-weight: 900;
+
+    display: block;
+
+    margin: 10px 0;
+
+    color: #eee;
+}
+
+.popup .note
+{
+    display: block;
+
+    width: 90%;
+    margin: 0 auto;
+}
+
+.popup .note span
+{
+    display: block;
+
+    text-align: left;
+}
+
+.popup .buttons
+{
+    position: relative;
+
+    display: flex;
+
+    width: 100%;
+    margin: 10px 0;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.popup .buttons form
+{
+    margin: 0;
+    padding: 0;
+}
+
+.popup .buttons .button
+{
+    font-size: 1.1em;
+    font-weight: 400;
+
+    display: inline-block;
+
+    margin: 0 5px;
+    padding: 5px 10px;
+
+    cursor: pointer;
+    transition: all .35s ease;
+    text-align: center;
+    /* text-transform: uppercase; */
+
+    color: #333;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    background: #d7d7d7;
+    box-shadow: 0 2px 3px rgba(0,0,0,.4);
+}
+
+.popup .buttons .button:active,
+.popup .buttons .button:hover
+{
+    color: #eee;
+    background: #3daddb;
+}
+
+.popup .buttons .button:active
+{
+    box-shadow: inset 1px 2px 4px rgba(0,0,0,.8);
+}

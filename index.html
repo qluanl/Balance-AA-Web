@@ -14,6 +14,7 @@
   <link href="css/bootstrap.css" rel="stylesheet">
 
   <link href="css/mystyle.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/popup.css" />
 
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
   <script src="js/jquery.min.js"></script>
@@ -21,6 +22,7 @@
   <script src="js/html_template.js"></script>
   <script src="js/scripts.js"></script>
   <script src="js/exe_script_prev.js"></script>
+  <script type="text/javascript" src="js/popup.js"></script>  
 
 </head>
 
@@ -35,12 +37,12 @@
         <p>
           This is a balance AA project developed by WhiteBook.
         </p>
-        <button type="button" class="btn btn-block btn-info">
+        <button type="button" class="btn btn-block btn-info" onclick="getBalance()">
           Get balance
         </button>
         <label class="form-text text-muted">
-          <small>Review the current balance. (under development)</small>
-        </label>
+          <small>Review the current balance.</small>
+        </label>        
         <hr>
         <button type="button" class="btn btn-block btn-danger" onclick="sendEmail()">
           Send email

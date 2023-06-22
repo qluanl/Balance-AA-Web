@@ -2,6 +2,7 @@
 // Since this project is designed as a pure front-end web page.
 // Please manually update the following settings.
 
+// Google Form for submit data with entry ID
 // https://docs.google.com/forms/d/e/1FAIpQLSceJ0t-TVHj6dvLThPfUtE1qb1GNNOA5d2WA96tkYfmum8Tpw/viewform?usp=pp_url&entry.1188823202=Event&entry.46915416=Date&entry.1920471650=Bozhao&entry.1531838934=Danchen&entry.1759055247=Xiangyu&entry.213037393=Shenggao&entry.667621715=Logger
 
 // Google form id and members list
@@ -19,6 +20,11 @@ const Main_Currency = 0; // The main currency index (starting from 0) for data u
 const Currency_ID = ["USD", "CNY", "CAD", "HKD", "JPY", "GBP", "EUR", "TWD"];
 const Currency_Name = ["US Dollar", "Chinese RMB", "Canadian Dollar", 
     "Hongkong Dollar", "Japanese Yen", "UK Pound", "Euro", "New Taiwan Dollar"];
+    
+    
+// Public Google Sheet for data read
+// https://docs.google.com/spreadsheets/d/16i-qlmCuDf1H52qkUcjd1GU_iCRqD2gY_jWT2j9eLr8/export?format=csv&gid=0
+const PublicSheetURL = "https://docs.google.com/spreadsheets/d/16i-qlmCuDf1H52qkUcjd1GU_iCRqD2gY_jWT2j9eLr8/export?format=csv&gid=0";
 
 // Since this project is designed as a pure front-end web page  
 // Please manually update the following default data by access

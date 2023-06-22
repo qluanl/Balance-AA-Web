@@ -424,19 +424,19 @@ function eventUploadProcess(){
   for (i=0; i < item_list.length; i++){
     let item_dict = item_list[i];
     let item_row = document.createElement("tr");
-    table_head.appendChild(item_row);
+    table_body.appendChild(item_row);
     
     item_num = document.createElement("th");
     item_num.innerHTML = i+1;
     item_row.appendChild(item_num);
     
-    item_name = document.createElement("th");
+    item_name = document.createElement("td");
     item_name.innerHTML = item_dict['item_name'];
     item_row.appendChild(item_name);
     
     let payerMoney = 0;
     for (let username in Members){
-      let item_user = document.createElement("th");
+      let item_user = document.createElement("td");
       let money = item_dict[name2ID(username)];
       item_user.innerHTML = money.toFixed(3);
       item_row.appendChild(item_user);
@@ -615,6 +615,46 @@ function P2Pupload(){
   p2p_dict['Items'] = itemDictList;
   console.log(p2p_dict);
   submitDict(p2p_dict);
+}
+
+function getBalance(){
+  var popupConfig = {
+    title: "Current Balance",
+    message: html_template_Popup,
+    buttons: ['Close']
+  };
+  var balancePopup = new Popup(popupConfig);
+  balancePopup.open();
+
+      
+  // let balance_table = document.getElementById("balance-data");
+  let balance_head = document.getElementById('balance-table-head');
+  let balance_body = document.getElementById('balance-table-body');
+  
+  fetch(PublicSheetURL)
+    .then(response => response.text())
+    .then(data => {
+      let rows = data.split("\n");
+      balance_head.innerHTML = "";
+      addCSVRow2Table(balance_head, rows[0], "th");
+      
+      for (let i = 1; i < rows.length; i++) {
+        addCSVRow2Table(balance_body, rows[i], "td");
+      }
+    })
+    .catch(error => console.log(error));
+
+}
+
+function addCSVRow2Table(table, datarow, type){
+  let datacells = datarow.split(",");
+  let newRow = document.createElement("tr");
+  table.appendChild(newRow);
+  for (let j = 0; j < datacells.length; j++) {
+    let cell = document.createElement(type);
+    cell.innerText = datacells[j];
+    newRow.appendChild(cell);
+  }
 }
 
 function sendEmail(){

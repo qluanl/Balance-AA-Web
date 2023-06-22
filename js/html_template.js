@@ -38,3 +38,14 @@ var html_template_Item = "<hr>\
   </select>\
   <input id='item-del-aFakeNumber' type='button' class='btn btn-outline-danger btn-delete-item' name='DelItem-aFakeNumber' value='Delete' data-id='aFakeNumber' onclick='delItem(this)'></input>\
 </div>";
+
+var html_template_Popup = "<table class='table' id='balance-data'>\
+    <thead id='balance-table-head'>\
+    <th>Fetching...</th>\
+    </thead>\
+    <tbody id='balance-table-body'>\
+    </tbody>\
+  </table>\
+  <label class='form-text text-muted'>\
+    <small>Negtive means in debt.</small>\
+  </label>";
