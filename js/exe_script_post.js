@@ -18,3 +18,8 @@ $('#P2P-upload-form').submit(function(e) {
   // console.log($('#P2P-upload-form').serialize());
   P2Pupload();
 });
+
+var input = "goirish";
+calculateSHA512(input).then(sha512Hash => {
+  console.log(sha512Hash);
+});
